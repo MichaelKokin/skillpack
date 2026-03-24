@@ -122,7 +122,49 @@ Follow Linear-style restraint:
 - Prioritize orientation, status, and action over mood and brand voice
 ```
 
-### Section 5: Motion & Animation
+### Section 5: Visual Richness (Anti-Template Layer)
+
+This is the most critical section. Without it, AI tools default to "Tailwind UI starter template" — clean but lifeless. These techniques are what separate a premium landing page from a generic one. Include 3-5 techniques from this menu, chosen to match the project's vibe.
+
+```
+## Visual Style
+
+Pick and apply from these techniques to create visual depth and uniqueness:
+
+### Backgrounds & Texture
+- Radial gradient glow behind hero content: `bg-[radial-gradient(ellipse_at_center,_var(--accent)_0%,_transparent_70%)] opacity-20`
+- Subtle dot grid or noise texture overlay on dark backgrounds for tactile quality
+- Gradient mesh: overlapping radial gradients in different positions creating an organic color field
+- Subtle grain texture: CSS `filter: url(#noise)` or a low-opacity PNG overlay
+
+### Depth & Glow
+- Accent-colored glow behind key elements: `shadow-[0_0_80px_rgba(accent,0.3)]`
+- Layered surfaces: background → surface → elevated surface with clear z-axis hierarchy
+- Border glow on hover: `hover:border-accent/50 hover:shadow-[0_0_20px_rgba(accent,0.15)]`
+- Glass panels (used sparingly, ONE per page max): `backdrop-blur-xl bg-white/5 border border-white/10`
+
+### Typography as Visual Element
+- Oversized display headings (64-80px) that ARE the visual — no image needed
+- Gradient text on hero headline: `bg-gradient-to-r from-white to-white/60 bg-clip-text text-transparent`
+- Accent-colored word in headline for emphasis (just one word, not the whole line)
+- Letter-spacing and weight variations to create rhythm
+
+### Layout Breaking Patterns
+- Asymmetric grid: content not centered but offset to one side with visual weight on the other
+- Overlapping elements: a code block that overlaps into the next section by 40px
+- Full-bleed alternating sections: dark → slightly lighter → dark creates visual rhythm without borders
+- Sticky scroll sections where content changes while the layout stays put
+
+### Code Blocks as Design Elements
+- Syntax-highlighted code with actual product examples (not placeholder)
+- Code blocks with custom styled headers (filename tab, status indicators)
+- Side-by-side code comparison with a visible divider and "before/after" labels
+- Animated typing effect on code to show the "export" moment
+```
+
+The goal: when someone sees the page, they should NOT think "that's a Tailwind template." These techniques are all achievable in pure CSS/Tailwind — no images required.
+
+### Section 6: Motion & Animation
 
 ```
 ## Motion
@@ -136,7 +178,7 @@ Keep fixed/floating elements from overlapping text or buttons across screen size
 No decorative animation. Every motion must reinforce hierarchy or provide feedback.
 ```
 
-### Section 6: Anti-Patterns (Rejection Checklist)
+### Section 7: Anti-Patterns (Rejection Checklist)
 
 Always include this — it's the most impactful section for preventing bad output.
 
@@ -154,9 +196,12 @@ Always include this — it's the most impactful section for preventing bad outpu
 - Split-screen hero where the text side is cluttered
 - Gradients that fight with text readability
 - More than 2 typefaces without strong justification
+- Flat dark background with just text — every section needs visual texture or depth
+- Empty placeholder mockups — if no real screenshot exists, use code blocks, gradient meshes, or typography as the visual anchor instead
+- "Tailwind UI starter" aesthetic — clean but lifeless. Add at least one visual richness technique per section.
 ```
 
-### Section 7: Responsiveness
+### Section 8: Responsiveness
 
 ```
 ## Responsive Behavior
@@ -173,7 +218,11 @@ Always include this — it's the most impactful section for preventing bad outpu
 
 Slight adjustments based on which AI tool the user is targeting:
 
-**Lovable**: Loves detailed prompts. Include all sections. Lovable responds well to explicit Tailwind class suggestions (e.g., "use `bg-zinc-950` for background"). You can be very specific about layout.
+**Lovable**: Loves detailed prompts. Include all sections. Key Lovable-specific rules:
+- Give explicit Tailwind classes (e.g., `bg-zinc-950`, `shadow-[0_0_80px_rgba(249,115,22,0.3)]`)
+- Lovable CANNOT generate real product screenshots — never ask for "a screenshot of the editor." Instead, describe visual elements it CAN build: code blocks, gradient backgrounds, animated text, SVG shapes, CSS mockups
+- When you need a product visual, tell Lovable to create a `<div>` mockup with styled elements that represent the UI, or leave an image placeholder with explicit dimensions and a comment like `{/* Replace with real screenshot: editor-hero.png */}`
+- Lovable defaults to "clean but flat" — always include Visual Richness techniques (gradient glows, texture, depth) or the result will look like a Tailwind UI starter template
 
 **Google Stitch**: More visual/design-oriented. Emphasize the design tokens, mood, and visual references. Stitch works well with style descriptions ("dark, minimal, with electric blue accents and generous whitespace").
 
@@ -198,6 +247,9 @@ Before outputting the final brief, verify:
 - [ ] Color tokens are specific hex values, not "blue" or "dark"
 - [ ] Typography specifies sizes, weights, and tracking
 - [ ] Anti-patterns section is included
+- [ ] **At least 3 visual richness techniques are specified** (glow, gradient, texture, etc.)
+- [ ] **No section relies on images the AI tool can't generate** — code blocks, CSS shapes, or gradient meshes used instead
+- [ ] **The brief would NOT produce a "Tailwind UI starter" look** — there's enough visual personality
 
 ---
 
@@ -224,14 +276,17 @@ The final output should be a single code block the user can paste directly:
 ## Composition Rules
 [rules]
 
+## Visual Style
+[3-5 specific visual richness techniques with Tailwind/CSS examples]
+
 ## Page Structure
-[sections with purposes]
+[sections with purposes — each section describes WHAT to render, not what image to show]
 
 ## Motion
-[2-3 specific animations]
+[2-3 specific animations with Framer Motion code hints]
 
 ## Do NOT generate
-[anti-patterns]
+[anti-patterns including "no flat template look"]
 
 ## Responsive
 [mobile-first rules]
