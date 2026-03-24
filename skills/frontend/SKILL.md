@@ -18,12 +18,21 @@ You interview the user, then generate a ready-to-paste prompt. The interview is 
 
 ### Step 1: Understand the Project
 
-Ask the user ONE message with these questions (skip any you can already infer from context):
+First, determine if this is a **new design from scratch** or a **redesign** of something existing. This changes the entire interview flow. Ask the user ONE message — pick the right set of questions based on context.
 
+**If building from scratch:**
 1. **What are you building?** (landing page, app UI, dashboard, portfolio, SaaS app, mobile web app, etc.)
 2. **What's the product/brand?** (name, what it does, who it's for — even a one-liner is fine)
 3. **Any design references or vibes?** (links, screenshots, words like "minimal", "bold", "dark mode", "Linear-style", "Stripe-like")
 4. **Which tool are you using?** (Lovable, Stitch, Bolt, v0, or "any" — this affects output format slightly)
+
+**If it's a redesign:**
+1. **What's the product?** (name, what it does, who it's for)
+2. **Link to the current site** (so we can see what exists and what to improve on)
+3. **What's wrong with the current version? What do you want instead?** ("too generic", "looks cheap", "want it like Linear", "hero doesn't convert" — any words, we'll translate to design decisions)
+4. **What's the main goal?** (sign-ups, purchases, demo bookings, downloads, etc.)
+
+If it's not clear from context which one it is, ask: "Is this a fresh design from scratch, or a redesign of something you already have?"
 
 If the user already described what they want in their initial message, don't re-ask. Extract what you can and only ask what's missing.
 
