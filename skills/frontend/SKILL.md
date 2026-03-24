@@ -1,329 +1,371 @@
 ---
 name: frontend
 description: >
-  Generate production-quality frontend briefs and design systems for AI builder tools (Lovable, Google Stitch, Bolt, v0) and for improving existing projects with Cursor/Claude Code. Use this skill whenever the user wants to create a UI, landing page, dashboard, or web app — whether from scratch or as a redesign. Trigger when the user mentions "vibe coding", "design brief", "design.md", asks to build something visual, or wants to improve the look of an existing frontend. Works for both greenfield projects and incremental redesigns of existing codebases.
+  Generate design systems (design.md) for frontend projects — reusable tokens, component patterns, composition rules, and anti-patterns. Works with AI builder tools (Lovable, Google Stitch, Bolt, v0) and with code editors (Cursor, Claude Code). Use this skill whenever the user wants to create a UI, landing page, dashboard, or web app — whether from scratch or as a redesign. Trigger when the user mentions "design system", "design.md", "design tokens", "vibe coding", wants to build something visual, or wants to improve the look of an existing frontend. The output is a reusable design system document, not a one-shot prompt.
 ---
 
-# Frontend Design Skill
+# Frontend Design System Skill
 
-You create opinionated, high-quality frontend briefs that produce results looking like a real designer built them — not a Tailwind UI starter template.
+You create **design systems** — reusable documents that define how a project looks and feels. Not one-shot prompts, not copywriting. A design.md that a user can reference again and again: "here's my design.md, now build the About page" → and it looks consistent with everything else.
 
-Two modes:
-- **New project** → full design.md for AI builder tools (Lovable, Stitch, Bolt, v0)
-- **Existing project redesign** → modular section-by-section briefs that respect the current codebase
+The output is always a **design.md** file containing:
+- **Tokens** — colors, typography, spacing, radii, shadows
+- **Composition rules** — how sections and layouts are built
+- **Component patterns** — reusable UI elements described as design specs
+- **Visual techniques** — what gives this project its unique character
+- **Anti-patterns** — what to avoid so the AI tool doesn't fall into templates
 
-The skill adapts its output based on which path the user is on.
+Copy and content are secondary. The user writes their own text or iterates on it separately. You focus on the visual system.
 
 ---
 
 ## Step 1: Determine the Path
 
-Before anything else, figure out which mode you're in. If it's not obvious from context, ask:
+Figure out which mode you're in. If not obvious, ask:
 
-> "This is a new project from scratch, or you're redesigning / improving something that already exists?"
+> "Starting from scratch, or redesigning something that already exists?"
 
-Then follow the appropriate interview flow.
+Three paths:
+
+- **🟢 Path A — New project.** No existing site or code. Building in an AI tool.
+- **🔵 Path B — Redesign with codebase.** Has a project with source code (Tailwind config, components, etc.)
+- **🟣 Path C — Redesign without codebase.** Has an existing site (Tilda, Webflow, WordPress, etc.) but no source code to read. Rebuilding from scratch, keeping the brand.
 
 ---
 
 ## Step 2: Interview
 
-### 🟢 Path A — New Project (AI builder tool)
+### 🟢 Path A — New Project
 
-Ask these one at a time. Skip what you can infer from context.
+One question at a time. Skip what you can infer.
 
 1. **What are you building?** Landing page, app UI, dashboard, portfolio, SaaS...
-2. **What's the product?** Name, one sentence about what it does and for whom.
-3. **Vibe?** References, mood, keywords. "Like Linear", "dark and minimal", "bold agency feel". Links to sites they admire are gold.
+2. **What's the product?** Name, what it does, who it's for — one sentence.
+3. **Vibe?** References, mood words, links to sites they admire. This is the most important question — push for specifics.
 4. **Which tool?** Lovable, Stitch, Bolt, v0, Replit, or "any".
 
-After the interview → generate a **full design.md** (see Output: Path A below).
+→ Output: **full design.md**
 
-### 🔵 Path B — Existing Project Redesign
+### 🔵 Path B — Redesign with Codebase
 
-Ask these one at a time. Skip what you can infer.
+1. **What's wrong? What do you want?** "Looks dated", "hero doesn't convert", "want it like [reference]".
+2. **Goal?** Sign-ups, purchases, demo bookings, downloads.
+3. **Which section first?** Hero, features, pricing, or "you decide".
 
-1. **Link to the current site** (or screenshot). What exists today?
-2. **What's wrong? What do you want instead?** "Looks cheap", "hero doesn't convert", "feature section is confusing", "want it more like [reference]".
-3. **What's the goal?** Sign-ups, purchases, demo bookings, downloads.
-4. **What section do you want to tackle first?** Hero? Features? Pricing? Or "you decide".
-
-Then, critically: **read the existing project before generating anything.**
-
+Then **read the existing project:**
 ```
-Before writing any brief, explore:
-- tailwind.config (or CSS variables) → extract existing design tokens
-- package.json → understand the real stack (Vue? React? Svelte?)
-- Existing components → understand current patterns and naming
-- Any agents.md / README → existing project context
+Explore before generating:
+- tailwind.config / CSS variables → existing design tokens
+- package.json → real stack
+- Components → current patterns
+- README / agents.md → project context
 
-DO NOT invent new design tokens if the project already has them.
-DO NOT assume React if the project uses Vue or Svelte.
-DO NOT generate a monolithic brief — work section by section.
+Use existing tokens. Don't invent new ones.
+Match the real stack. Don't assume React.
 ```
 
-After reading the project → generate a **section brief** (see Output: Path B below).
+→ Output: **section-level design brief** using existing tokens
+
+### 🟣 Path C — Redesign without Codebase
+
+1. **Link to the current site** (or screenshots).
+2. **What's wrong? What do you want?** Same as Path B.
+3. **Goal?** Same as Path B.
+4. **Keep or change?** What to preserve from current brand: colors? fonts? logo? vibe? Or fresh start?
+
+Then **analyze the existing site:**
+```
+From the URL/screenshots, extract:
+- Current color palette → decide what to keep vs evolve
+- Typography → identify fonts, evaluate if they work
+- Brand identity → logo, tone, personality to preserve
+- What's dated or generic → specific things to fix
+
+Build a NEW design system that respects the brand DNA
+but elevates the visual quality.
+```
+
+→ Output: **full design.md** with notes on what changed from current site and why
 
 ---
 
 ## Design Principles
 
-These rules apply to BOTH paths. They are the core of the skill — what prevents generic, template-looking output.
+These rules are the core of the skill. They apply to ALL paths.
 
-### Composition
+### Composition Rules
 
 ```
-One composition: The first viewport reads as one complete idea, not a collection of widgets.
-Brand first: Product name is hero-level — large, bold, unmistakable. Not tucked in a navbar.
-Full-bleed hero: Edge-to-edge visual. No boxed center-column layout on landing pages.
-Hero budget: Brand + headline + one supporting sentence + CTA + one visual. Nothing else.
-No hero overlays: No floating stat counters, badges, or detached labels on hero imagery.
-One job per section: Each section has exactly one purpose and one headline.
-Cards: Default is NO cards. Use cards only for things users interact with (pricing tiers, comparisons).
-Real visual anchor: Every section needs a visual anchor — product screenshot, code block,
-  or styled visual element. Decorative gradients alone don't count.
+One composition: First viewport = one complete idea, not a collection of widgets.
+Brand first: Product name is hero-level — large, bold, unmistakable.
+Full-bleed hero: Edge-to-edge on landing pages. No boxed center-column.
+Hero budget: Brand + headline + one supporting sentence + CTA + one visual. That's it.
+No hero overlays: No floating counters, badges, or detached labels on imagery.
+One job per section: Each section has one purpose, one headline.
+Cards: Default is NONE. Only for interactive elements (pricing, comparisons).
+Visual anchor: Every section needs one — screenshot, code block, styled element.
+  Decorative gradients alone don't count.
+Section rhythm: Alternate background shades (background → surface → background)
+  so sections don't blend into one flat wall.
 ```
 
 ### Anti-Template Techniques
 
-These are the techniques that separate "a designer built this" from "that's a template". Pick 3-5 per project and specify them in the brief.
+What separates "a designer built this" from "that's a template." Pick 3-5 per project.
 
-**Backgrounds with depth:**
-- Subtle radial glow behind hero (accent color, 8-12% opacity)
-- Alternating section backgrounds (background → surface → background) for rhythm
-- Subtle grain/noise texture overlay on dark backgrounds
+**Depth & atmosphere:**
+- Radial glow behind hero (accent color, 8-12% opacity)
+- Grain/noise texture on dark backgrounds (subtle, 2-4% opacity)
+- Gradient borders on key elements (1px border with gradient from accent to transparent)
 
 **Typography as design:**
-- Oversized display headings (56-80px) — the headline IS the visual
-- One accent-colored word in the headline for emphasis
-- Gradient text for hero: white → white/60 fade
-
-**Visual storytelling:**
-- Before/after comparisons: show the TRANSFORMATION, not just two code blocks. "Before" should feel painful (code), "After" should feel visual (screenshot/mockup of the result)
-- Step-by-step sections: only include steps that actually exist in the product. Don't invent steps to fill a 3-column layout
-- Code blocks as design elements: filename tabs, colored status dots, real syntax from the actual product
+- Display headings at 56-80px — the headline IS the visual
+- One accent-colored word in the headline
+- Gradient text: primary → primary/60 fade
+- Letter-spacing and weight contrast between display and body
 
 **Layout with character:**
-- Asymmetric layouts for feature sections (image left/text right, then flip)
-- Overlapping elements between sections for visual continuity
-- Generous whitespace — let sections breathe, don't pack everything tight
+- Asymmetric feature sections (image left/text right, then flip)
+- Overlapping elements between sections
+- Browser-frame or device-frame mockups for screenshots (not flat images)
+- Generous whitespace — sections breathe
 
-### Content Rules
+**Micro-details that add up:**
+- Colored status dots on code blocks (red/green for before/after)
+- Filename tabs on code snippets
+- Subtle hover states: lift + colored border glow
+- Pill-shaped tags with muted backgrounds (not outlines)
 
-```
-Every headline is a statement or action. Never a question.
-Lead with what the product DOES, then why it MATTERS.
-No mood copy: "Unleash", "Transform", "Supercharge", "Revolutionary" are banned.
-No filler: every sentence addresses a specific pain or shows a specific capability.
-For app UIs: headings describe what the area IS ("Active Projects", "Search Metrics"),
-  not what the user should feel ("Unlock Your Potential").
-```
+### Before/After — The Right Way
 
-### Before/After Sections — How to Do Them Right
-
-This is where most AI-generated pages fail. The rule:
+Most AI tools get this wrong. The rule:
 
 ```
-WRONG: Before (code) → After (different code)
-  This means nothing to most visitors. Two code blocks look the same.
+WRONG: code → different code (two blocks look the same to visitors)
+RIGHT: painful thing → beautiful result (visual contrast must be obvious)
 
-RIGHT: Before (painful manual code) → After (visual result / clean UI / simple API call)
-  The contrast must be VISUALLY obvious, not just textually different.
+code → screenshot/mockup (product turns code into visuals)
+long ugly code → short clean code with line count (product simplifies)
+manual process → automated result (product replaces work)
 
-If the product turns code into visuals: show code → screenshot/mockup.
-If the product simplifies code: show long ugly code → short clean code (with line count comparison).
-If the product replaces manual work: show the manual process → the automated result.
-
-The "After" must feel like relief. If it doesn't, rethink the comparison.
+The "After" must feel like relief. If both sides look similar, rethink.
 ```
 
 ### Anti-Patterns
 
-Include these in every brief:
+Include in every design.md:
 
 ```
-Do NOT generate:
+Do NOT:
 - Generic SaaS card grids as first impression
 - Beautiful images with weak brand presence
-- Headlines with no clear CTA
+- Headlines with no CTA
 - Busy patterns behind body text
-- Mood statements repeating across sections ("Discover...", "Transform...")
+- Mood statements: "Unleash", "Transform", "Supercharge"
 - Carousels without narrative purpose
-- Stacked cards as substitute for actual layout
+- Stacked cards as layout substitute
+- Icon rows or bento grids as hero content
+- Flat solid-color sections with centered text (add depth)
+- Invented features or steps that don't exist in the product
+- More than 2 typefaces
+- "Our Process: 1. Brief 2. Design 3. Deliver" (every agency has this)
 - Dashboard-card mosaics with thick borders
-- Icon rows or feature bento grids as hero content
-- Flat solid-color sections with just centered text — add visual depth
-- Sections that don't match the actual product (don't invent features or steps)
-- More than 2 typefaces without clear reason
 ```
 
 ---
 
-## Output: Path A — Full design.md (New Project)
+## Output: design.md Structure
 
-Generate a single file the user can paste into their AI builder tool. Structure:
+This is what gets generated. Same structure for Path A and Path C. Path B uses a subset (section brief).
 
 ~~~
-```
+```markdown
+# Design System — [Project Name]
+
 ## Project
-[One sentence: what this is, who it's for, main goal]
+[One sentence. What, for whom, main goal.]
 
 ## Stack
-[React/Vue/Svelte + Tailwind + extras. Ask if unsure — don't guess.]
+[Framework + CSS + extras. Ask — don't guess.]
 
-## Design Tokens
-[Full token set with hex values. Use Preset Palettes below as starting points.]
+## Tokens
 
-## Typography
-[Display, Headline, Body, Code — with sizes, weights, tracking. Max 2 typefaces.]
+### Colors
+| Token       | Value   | Usage                          |
+|-------------|---------|--------------------------------|
+| background  | #0F0A1A | Page background                |
+| surface     | #1A1228 | Cards, elevated sections       |
+| text        | #F8F6FC | Primary text                   |
+| muted       | #9B8FBB | Secondary text, captions       |
+| accent      | #A674FE | CTAs, links, highlights        |
+| accent-hover| #BF96FF | Hover states                   |
+| border      | #2D2341 | Dividers, subtle borders       |
 
-## Hard Rules
-[Composition rules from Design Principles above, adapted to this specific project]
+### Typography
+| Role    | Font      | Size  | Weight | Tracking | Notes             |
+|---------|-----------|-------|--------|----------|-------------------|
+| Display | Unbounded | 64px  | 800    | -0.02em  | Hero headlines    |
+| Heading | Unbounded | 36px  | 700    | -0.01em  | Section headlines |
+| Body    | Inter     | 17px  | 400    | normal   | Paragraphs        |
+| Caption | Inter     | 13px  | 500    | 0.04em   | Labels, uppercase |
+| Code    | JetBrains Mono | 14px | 400 | normal  | Code blocks       |
 
-## Visual Strategy
-[Which 3-5 anti-template techniques to use. Be specific:
- "Radial glow behind hero CTA using accent at 10% opacity"
- "Gradient text on hero headline: from-white to-white/60"
- "Product screenshot placeholder (aspect-video, max-w-5xl, rounded-xl border)"]
+### Spacing
+| Token | Value | Usage                     |
+|-------|-------|---------------------------|
+| section-y | 120px | Between sections      |
+| content-gap | 48px | Between content blocks |
+| element-gap | 24px | Between related items  |
+| tight | 12px | Compact spacing            |
 
-## Page Structure
-[Sections with purposes. For each section specify:
- - Headline text
- - What the visual anchor is (screenshot placeholder, code block, styled element)
- - One-sentence description of what this section communicates
- Keep it to 4-5 sections max. More is not better.]
+### Radii
+| Token   | Value | Usage                        |
+|---------|-------|------------------------------|
+| default | 12px  | Buttons, inputs              |
+| card    | 24px  | Cards, elevated containers   |
+| full    | 9999px| Pills, avatars               |
+
+### Shadows
+| Token   | Value                              | Usage           |
+|---------|------------------------------------|-----------------|
+| subtle  | 0 2px 8px rgba(0,0,0,0.08)       | Hover states    |
+| card    | 0 4px 24px rgba(0,0,0,0.12)      | Elevated cards  |
+| glow    | 0 0 60px rgba(accent, 0.12)      | Hero emphasis   |
+
+## Composition Rules
+[Rules from Design Principles, adapted to this project.
+ Be specific — reference the project's actual needs.]
+
+## Visual Techniques
+[3-5 specific anti-template techniques. Not abstract principles —
+ concrete instructions:
+ "Radial glow behind hero CTA: accent color at 10% opacity, 400px radius"
+ "Display heading with one accent-colored word"
+ "Portfolio items in browser-frame mockups with 2deg perspective tilt"]
+
+## Component Patterns
+
+### Primary CTA
+[Size, padding, radius, colors, hover state, optional animation]
+
+### Section Layout
+[Default section structure: max-width, padding, background alternation]
+
+### Image Placeholder
+[How to handle images: dimensions, aspect ratio, border, label format.
+ Example: "aspect-video, max-w-5xl, rounded-xl, 1px border-border,
+ centered text label like 'hero-screenshot.png'"]
+
+### Code Block (if applicable)
+[Styling: background, padding, filename tab, status dot, font]
+
+### Navigation
+[Sticky/fixed, background blur, items, CTA button style]
+
+## Page Blueprint (optional)
+[High-level section order with one-line purposes. NOT copywriting.
+ Example:
+ 1. Hero — brand identity + primary CTA
+ 2. Social proof — logos or key metric
+ 3. Core value prop — what the product does, with visual
+ 4. How it works — 2-3 steps (only if real steps exist)
+ 5. CTA — repeat primary action
+
+ For each section: what the visual anchor is.
+ Text/headlines are suggestions — user will rewrite.]
 
 ## Motion
-[Exactly 2-3 animations. Be specific about what, where, and how.]
+[Exactly 2-3 animations:
+ 1. Hero entrance (what, duration, easing)
+ 2. Scroll-triggered reveals (what elements, threshold)
+ 3. Micro-interaction (hover, CTA pulse, toggle)]
 
-## Do NOT generate
-[Anti-patterns list, customized to this project]
+## Do NOT
+[Anti-patterns customized to this project]
 
 ## Responsive
-[Mobile-first rules]
+[Breakpoints, key layout changes, mobile-specific rules]
 ```
 ~~~
 
-**Length:** 80-150 lines. Dense and opinionated. Not a novel.
+### Path B Output — Section Brief
 
-### Tool-Specific Adjustments
-
-**Lovable:** Give explicit Tailwind classes. Describe image placeholders with dimensions and labels (user replaces later). Lovable handles long detailed prompts well.
-
-**Google Stitch:** Emphasize mood, visual style, and references. Stitch generates images — describe what you want to see, not just placeholders. "Hero image: abstract 3D rendering of a microcontroller in warm orange lighting."
-
-**Bolt / v0:** Be explicit about React component structure. Name components, describe props.
-
-**Replit Agent:** Break into phases: "Phase 1: layout skeleton. Phase 2: styling and tokens. Phase 3: animations and polish."
-
----
-
-## Output: Path B — Section Brief (Existing Project)
-
-For redesigns, generate ONE section brief at a time. Structure:
+For existing codebases, generate one section at a time:
 
 ~~~
-```
-## Section: [Name — e.g., "Hero Redesign"]
+```markdown
+## Section: [Name]
 
-### Context
-[What exists today and what's wrong with it. Reference actual files/components from the project.]
+### What's Wrong Now
+[What the current version looks like and why it's not working]
 
 ### Design Direction
-[What this section should look like and feel like. Reference EXISTING design tokens from
- the project's Tailwind config — don't invent new ones.]
+[Using EXISTING tokens from the project's config]
 
-### Structure
-[Exact layout description. What elements, in what order, with what visual weight.]
-
-### Copy
-[Actual headline and supporting text. Not placeholder.]
+### Layout
+[Structure description]
 
 ### Visual Anchor
-[What's the main visual? Screenshot placeholder with dimensions, code block, styled element.]
+[What's the main visual element]
 
-### Implementation Notes
-[Which existing components to modify or create. File paths if known.
- Specific Tailwind classes using the project's existing token system.
- "Modify components/Hero.vue — replace current centered layout with full-bleed..."]
+### Implementation
+[Files to modify, components to create, specific classes]
 
 ### Do NOT
-[Section-specific anti-patterns. "Don't add a stat counter to the hero.
- Don't use cards for features — use alternating rows."]
+[Section-specific anti-patterns]
 ```
 ~~~
 
-**After generating a section brief:**
-1. Ask the user to review
-2. If approved → they paste into Cursor/Claude Code with their project context
-3. Ask: "Which section next?"
-4. Repeat until done
-
-This modular approach means each section is tested before moving on. No "generate everything and hope" approach.
+After each section → user reviews → next section.
 
 ---
 
 ## Preset Palettes
 
-When the user describes a vibe but not specific colors, use these as starting points and customize. For Path B (existing projects), SKIP THIS — use their existing tokens.
+Starting points when user describes a vibe, not specific colors. For Path B/C with existing brand colors — EVOLVE don't replace.
 
 **Dark Minimal (Linear/Vercel)**
-Background: #09090B, Surface: #18181B, Text: #FAFAFA, Muted: #71717A, Accent: #6366F1, Border: #27272A
+`#09090B · #18181B · #FAFAFA · #71717A · #6366F1 · #27272A`
 
 **Warm Dark (Notion/Craft)**
-Background: #1C1917, Surface: #292524, Text: #FAFAF9, Muted: #A8A29E, Accent: #F59E0B, Border: #44403C
+`#1C1917 · #292524 · #FAFAF9 · #A8A29E · #F59E0B · #44403C`
 
 **Light Clean (Stripe)**
-Background: #FFFFFF, Surface: #F4F4F5, Text: #18181B, Muted: #71717A, Accent: #2563EB, Border: #E4E4E7
+`#FFFFFF · #F4F4F5 · #18181B · #71717A · #2563EB · #E4E4E7`
 
 **Bold & Vibrant (Agency)**
-Background: #0F172A, Surface: #1E293B, Text: #F8FAFC, Muted: #94A3B8, Accent: #F43F5E, Border: #334155
+`#0F172A · #1E293B · #F8FAFC · #94A3B8 · #F43F5E · #334155`
 
 **Earthy / Organic**
-Background: #FEFCE8, Surface: #FEF9C3, Text: #422006, Muted: #92400E, Accent: #16A34A, Border: #D9F99D
+`#FEFCE8 · #FEF9C3 · #422006 · #92400E · #16A34A · #D9F99D`
 
 **Cyberpunk / Neon**
-Background: #020617, Surface: #0F172A, Text: #E2E8F0, Muted: #64748B, Accent: #22D3EE, Border: #1E293B
+`#020617 · #0F172A · #E2E8F0 · #64748B · #22D3EE · #1E293B`
+
+---
+
+## Tool-Specific Notes
+
+**Lovable:** Explicit Tailwind classes work well. Label image placeholders with dimensions. Handles long prompts.
+
+**Google Stitch:** Emphasize mood and visual references. Stitch generates images — describe desired visuals, not just placeholders.
+
+**Bolt / v0:** Explicit React component structure. Name components.
+
+**Cursor / Claude Code:** Reference actual files. Use existing tokens and component patterns.
 
 ---
 
 ## Quality Checklist
 
-Before outputting any brief, verify:
+Before outputting:
 
-**Structure:**
-- [ ] Each section has exactly one job
-- [ ] Sections match the REAL product — no invented features or steps
-- [ ] Cards are justified (not default)
-- [ ] Page can be understood by scanning headlines only
-
-**Visual:**
-- [ ] Every section has a visual anchor (not just text on flat background)
-- [ ] At least 3 anti-template techniques specified
-- [ ] Before/after comparisons show visual contrast, not just two code blocks
-- [ ] Brand is unmistakable in the first viewport
-
-**Technical:**
-- [ ] Stack matches the actual project (not assumed)
-- [ ] Design tokens are from the project's config (Path B) or specific hex values (Path A)
-- [ ] Typography specifies sizes, weights, tracking
-- [ ] Anti-patterns list is included
-
-**Workflow:**
+- [ ] Tokens table has specific hex values (not "blue" or "dark")
+- [ ] Typography has sizes, weights, AND tracking
+- [ ] At least 3 visual techniques specified with concrete details
+- [ ] Component patterns are described (not just colors)
+- [ ] Anti-patterns list is included and project-specific
+- [ ] Stack is correct (asked, not assumed)
+- [ ] Blueprint sections match the real product
 - [ ] User knows what to DO with this file
-- [ ] Path A: "paste into [tool name]"
-- [ ] Path B: "paste this section brief into Cursor with your project context"
-
----
-
-## Litmus Test
-
-After generating, mentally ask:
-- Is the brand unmistakable in the first screen?
-- Is there one strong visual anchor per section?
-- Does each section have one job?
-- Would a designer look at this brief and think "this person knows what they want"?
-- Does the before/after actually show a transformation?
-- Would the result look different from a generic Tailwind template?
-
-If any answer is "no" — revise before outputting.
+- [ ] Would the result look different from a Tailwind UI template?
