@@ -31,20 +31,48 @@ cp -r skills/frontend /path/to/your/project/.claude/skills/
 ### Option 3: Feed directly to an AI assistant
 Copy the `SKILL.md` content into your system prompt or paste it at the start of a conversation with any AI assistant — it will follow the skill's workflow.
 
-## 🎨 Frontend Skill — Example
+## 🎨 Frontend Skill
+
+### How it works
+
+**Quick interview — 4 questions, that's it:**
+1. 🏗 What are you building? (landing, app, dashboard...)
+2. 🏷 What's the product/brand?
+3. 🎨 What's the vibe? (minimal, bold, dark, "like Linear"...)
+4. 🔧 Which tool? (Lovable, Stitch, Bolt, v0...)
+
+Already described everything in your first message? The skill picks it up and skips what's obvious.
+
+### What you get
+
+A **ready-to-paste brief** (60-120 lines) with:
+- 🎨 Exact color tokens — not "dark theme" but `#0A0A0B`, `#6366F1`
+- 🔤 Typography specs down to tracking and weight
+- 📐 Page structure with clear section purposes
+- 🚫 Anti-patterns that prevent generic AI output
+- ✨ Motion specs — exactly which 2-3 animations and where
+- 📱 Responsive rules
+
+### 6 built-in palettes
+
+Don't know what colors you want? Just describe the vibe:
+
+| Palette | Vibe | Think... |
+|---------|------|----------|
+| **Dark Minimal** | Clean, techy | Linear, Vercel |
+| **Warm Dark** | Cozy, premium | Notion, Craft |
+| **Light Clean** | Professional, airy | Stripe |
+| **Bold & Vibrant** | Energetic, creative | Agency sites |
+| **Earthy** | Natural, organic | Wellness, eco |
+| **Cyberpunk** | Neon, futuristic | Web3, gaming |
+
+The skill uses these as starting points and customizes for your brand.
+
+### Example
 
 **You say:** "I need a landing page for my AI email marketing tool called MailPilot"
 
-**Skill generates a 80-line brief** with:
-- Exact color tokens (`#0A0A0B`, `#6366F1`, etc.)
-- Typography specs (Inter, 64px display, -0.02em tracking)
-- Page structure (Hero → Product → Social Proof → CTA)
-- Composition rules (full-bleed hero, no card grids, one job per section)
-- Anti-patterns ("Do NOT generate generic SaaS card grids...")
-- Motion specs (2-3 intentional animations)
-- Responsive behavior
-
-**You paste it into Lovable** → get a page that looks like a designer built it, not a template.
+**You paste the generated brief into Lovable** → get a page that looks like a designer built it, not a template.
 
 ## 🧠 Philosophy
 
