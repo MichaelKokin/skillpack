@@ -12,7 +12,7 @@ The core insight: AI builder tools produce dramatically better output when given
 
 ## How This Works
 
-You interview the user, then generate a ready-to-paste prompt. The interview is quick — 2-3 focused questions, not a 20-question survey. You should infer as much as possible from context and fill in smart defaults.
+You interview the user, then generate a ready-to-paste prompt. The interview is quick — 4 focused questions, not a 20-question survey. Infer as much as possible from context and fill in smart defaults.
 
 ## Interview Flow
 
@@ -70,37 +70,65 @@ Always define these tokens explicitly. Pick values that match the user's vibe �
 - Max two typefaces. [Explain the choice briefly]
 ```
 
-### Section 3: Layout & Composition Rules
+### Section 3: Hard Composition Rules
 
-These rules prevent the AI tool from falling into common traps. Include them verbatim — they're battle-tested.
+These rules are the backbone of the brief. They prevent AI tools from falling into every common trap. Include them in every brief — they're adapted from battle-tested design principles.
 
 ```
-## Composition Rules
-- The first viewport must read as ONE complete idea — not a collection of components
-- Brand/product name is hero-level, not buried in a nav bar
-- Full-bleed hero: edge-to-edge visuals, no boxed center-column layout
-- Hero budget: brand + headline + one supporting sentence + CTA + one visual. That's it.
-- No floating badges, detached labels, or overlays on hero imagery
-- No cards by default. Use cards ONLY for interactive elements (pricing tiers, feature comparisons users click through)
-- Each section has exactly ONE job and ONE headline
-- Every image must show product or context — no decorative stock photography
-- No pill clusters, stat strips, icon grids, or visual clutter
-- No filler copy. Every word earns its place.
-- Maximum one accent color unless a strong design system justifies more
+## Hard Rules
+
+One composition: The first viewport reads as one complete idea, not a dashboard of widgets.
+Brand first: Brand/product name is hero-level — large, bold, unmistakable. Not nav text.
+Typography: Use expressive, purposeful fonts. No system defaults.
+Background: Use gradients, images, or textured surfaces. Not flat solid colors.
+Full-bleed hero: Edge-to-edge hero visual. No boxed center-column layout on landing pages.
+Hero budget: Brand + headline + one supporting sentence + CTA + one image/visual. That's it.
+No hero overlays: No floating badges, stat counters, or detached labels on hero imagery.
+Cards: Default is NO cards. Cards only for interactive elements users click through.
+One job per section: Each section has exactly one purpose and one headline.
+Real visual anchor: Imagery shows product, place, or context. Decorative gradients and abstract shapes alone don't count as a visual anchor.
+Reduce clutter: No pill clusters, stat strips, icon rows, or feature grids.
+Motion: 2-3 intentional motions that reinforce hierarchy. No decorative animation.
 ```
 
-### Section 4: Page Structure
+### Section 4: Image & Visual Strategy
+
+AI builder tools can't generate real product screenshots — but every section still needs a strong visual anchor. The brief should tell the tool exactly what to render.
+
+```
+## Visual Strategy
+
+For product screenshots/images: Use placeholder containers with explicit dimensions,
+aspect ratio, a subtle border, and a label like "Product screenshot — editor view".
+The user will replace these with real images.
+
+For visual richness WITHOUT images, apply these techniques:
+- Accent-colored radial glow behind key elements (hero, CTA)
+- Subtle background texture: dot grid, grain, or noise overlay
+- Gradient text for hero headline: `bg-gradient-to-r from-white to-white/60 bg-clip-text text-transparent`
+- Accent-colored emphasis on one word in headlines
+- Syntax-highlighted code blocks as visual elements (using real product code examples)
+- Layered surface hierarchy: background → surface → elevated surface
+- Alternating section backgrounds for visual rhythm
+
+Every section needs at least one of: real image placeholder, styled code block,
+or visual richness technique. No section should be just text on a flat background.
+```
+
+This section matters because without it, AI tools produce pages that are structurally correct but visually flat — the "Tailwind UI starter template" problem.
+
+### Section 5: Page Structure
 
 Adapt this based on project type.
 
 **For Landing Pages:**
 ```
 ## Page Structure
-1. Hero — Establish brand identity and core promise. Full-bleed visual. One CTA.
-2. Supporting Visual — Show the product in context (screenshot, demo, lifestyle image)
-3. Product Detail — Explain the core offering. 2-3 features max, not a feature dump.
-4. Social Proof — Testimonials, logos, or metrics. Keep it tight.
-5. Final CTA — Repeat the call to action with urgency or incentive.
+1. Hero — Brand identity + core promise. Full-bleed visual. One CTA. One product image.
+2. Supporting — Show product in context or demonstrate the core pain/solution.
+3. Detail — Explain the offering. 2-3 key capabilities max, not a feature dump.
+4. Social Proof — Testimonials, logos, or metrics. Only if real. Skip if not.
+5. Final CTA — Repeat call to action. Brand + one sentence + button. Clean, spacious.
 ```
 
 **For App UIs / Dashboards:**
@@ -115,90 +143,46 @@ Follow Linear-style restraint:
 - Sidebar navigation with clean iconography
 - Data-first: show the actual content, not chrome around it
 
-## Utility Copy Rules
-- Section headings describe what the area IS or what users DO there
+## Utility Copy
+- Section headings say what the area IS or what users DO there
 - Good: "Active Projects", "Search Metrics", "Plan Status"
 - Bad: "Unlock Your Potential", "Discover Insights", "Your Journey"
-- Prioritize orientation, status, and action over mood and brand voice
+- Prioritize orientation and status over mood and brand voice
 ```
-
-### Section 5: Visual Richness (Anti-Template Layer)
-
-This is the most critical section. Without it, AI tools default to "Tailwind UI starter template" — clean but lifeless. These techniques are what separate a premium landing page from a generic one. Include 3-5 techniques from this menu, chosen to match the project's vibe.
-
-```
-## Visual Style
-
-Pick and apply from these techniques to create visual depth and uniqueness:
-
-### Backgrounds & Texture
-- Radial gradient glow behind hero content: `bg-[radial-gradient(ellipse_at_center,_var(--accent)_0%,_transparent_70%)] opacity-20`
-- Subtle dot grid or noise texture overlay on dark backgrounds for tactile quality
-- Gradient mesh: overlapping radial gradients in different positions creating an organic color field
-- Subtle grain texture: CSS `filter: url(#noise)` or a low-opacity PNG overlay
-
-### Depth & Glow
-- Accent-colored glow behind key elements: `shadow-[0_0_80px_rgba(accent,0.3)]`
-- Layered surfaces: background → surface → elevated surface with clear z-axis hierarchy
-- Border glow on hover: `hover:border-accent/50 hover:shadow-[0_0_20px_rgba(accent,0.15)]`
-- Glass panels (used sparingly, ONE per page max): `backdrop-blur-xl bg-white/5 border border-white/10`
-
-### Typography as Visual Element
-- Oversized display headings (64-80px) that ARE the visual — no image needed
-- Gradient text on hero headline: `bg-gradient-to-r from-white to-white/60 bg-clip-text text-transparent`
-- Accent-colored word in headline for emphasis (just one word, not the whole line)
-- Letter-spacing and weight variations to create rhythm
-
-### Layout Breaking Patterns
-- Asymmetric grid: content not centered but offset to one side with visual weight on the other
-- Overlapping elements: a code block that overlaps into the next section by 40px
-- Full-bleed alternating sections: dark → slightly lighter → dark creates visual rhythm without borders
-- Sticky scroll sections where content changes while the layout stays put
-
-### Code Blocks as Design Elements
-- Syntax-highlighted code with actual product examples (not placeholder)
-- Code blocks with custom styled headers (filename tab, status indicators)
-- Side-by-side code comparison with a visible divider and "before/after" labels
-- Animated typing effect on code to show the "export" moment
-```
-
-The goal: when someone sees the page, they should NOT think "that's a Tailwind template." These techniques are all achievable in pure CSS/Tailwind — no images required.
 
 ### Section 6: Motion & Animation
 
 ```
 ## Motion
 Ship exactly 2-3 intentional motions:
-1. One entrance animation in the hero (fade-up + scale, or text reveal)
-2. One scroll-linked effect (parallax, sticky section, or reveal-on-scroll)
-3. One interaction micro-animation (button hover, card lift, or toggle)
+1. One entrance sequence in the hero (fade-up, scale, or text reveal)
+2. One scroll-linked or sticky effect (parallax, reveal-on-scroll, sticky storytelling)
+3. One hover/interaction transition (button state, card lift, reveal)
 
 Use Framer Motion for: section reveals, shared layout transitions, scroll-linked effects.
-Keep fixed/floating elements from overlapping text or buttons across screen sizes.
-No decorative animation. Every motion must reinforce hierarchy or provide feedback.
+Motions must be noticeable in a quick recording, smooth on mobile, fast and restrained.
+No decorative particles, floating shapes, or background animations.
 ```
 
-### Section 7: Anti-Patterns (Rejection Checklist)
+### Section 7: Anti-Patterns
 
-Always include this — it's the most impactful section for preventing bad output.
+Always include this — it's the most impactful section for preventing generic output.
 
 ```
 ## Do NOT generate:
 - Generic SaaS card grids as the first impression
-- Beautiful hero images with weak or missing brand presence
-- Strong headlines with no clear action/CTA
-- Busy imagery or patterns behind text
-- Repeating section mood statements ("Unleash...", "Discover...", "Transform...")
+- Beautiful images with weak or missing brand presence
+- Strong headlines with no clear CTA
+- Busy patterns or textures behind body text
+- Mood statements that repeat across sections ("Unleash...", "Discover...", "Transform...")
 - Carousels without narrative purpose
-- Stacked cards as a substitute for actual layout design
-- Decorative shadows or glassmorphism without purpose
-- Icon rows or feature grids as hero content
+- Stacked cards as a substitute for real layout design
+- Dashboard-card mosaics, thick borders on every region
+- Decorative gradients behind routine product UI
+- Icon rows or feature bento grids as hero content
 - Split-screen hero where the text side is cluttered
-- Gradients that fight with text readability
-- More than 2 typefaces without strong justification
-- Flat dark background with just text — every section needs visual texture or depth
-- Empty placeholder mockups — if no real screenshot exists, use code blocks, gradient meshes, or typography as the visual anchor instead
-- "Tailwind UI starter" aesthetic — clean but lifeless. Add at least one visual richness technique per section.
+- More than 2 typefaces without clear reason
+- Flat solid-color sections with just centered text — add visual depth
 ```
 
 ### Section 8: Responsiveness
@@ -206,8 +190,8 @@ Always include this — it's the most impactful section for preventing bad outpu
 ```
 ## Responsive Behavior
 - Mobile-first: design for 375px, then scale up
-- Hero text should remain readable without horizontal scroll on mobile
-- Navigation collapses to hamburger or bottom nav on mobile
+- Hero text readable without horizontal scroll on mobile
+- Navigation collapses to hamburger or bottom nav
 - Touch targets minimum 44x44px
 - Images use aspect-ratio containers to prevent layout shift
 ```
@@ -216,21 +200,15 @@ Always include this — it's the most impactful section for preventing bad outpu
 
 ## Adapting to the Target Tool
 
-Slight adjustments based on which AI tool the user is targeting:
+**Lovable**: Loves detailed prompts. Include all sections. Give explicit Tailwind classes where possible (e.g., `bg-zinc-950`, `text-orange-500`). For product images, describe placeholder containers with dimensions — Lovable will render them and the user replaces later.
 
-**Lovable**: Loves detailed prompts. Include all sections. Key Lovable-specific rules:
-- Give explicit Tailwind classes (e.g., `bg-zinc-950`, `shadow-[0_0_80px_rgba(249,115,22,0.3)]`)
-- Lovable CANNOT generate real product screenshots — never ask for "a screenshot of the editor." Instead, describe visual elements it CAN build: code blocks, gradient backgrounds, animated text, SVG shapes, CSS mockups
-- When you need a product visual, tell Lovable to create a `<div>` mockup with styled elements that represent the UI, or leave an image placeholder with explicit dimensions and a comment like `{/* Replace with real screenshot: editor-hero.png */}`
-- Lovable defaults to "clean but flat" — always include Visual Richness techniques (gradient glows, texture, depth) or the result will look like a Tailwind UI starter template
+**Google Stitch**: Visual/design-oriented. Emphasize design tokens, mood, and references. Stitch responds well to style descriptions ("dark, minimal, electric blue accents, generous whitespace").
 
-**Google Stitch**: More visual/design-oriented. Emphasize the design tokens, mood, and visual references. Stitch works well with style descriptions ("dark, minimal, with electric blue accents and generous whitespace").
+**Bolt / v0**: React + Tailwind native. Be explicit about component structure (e.g., "Hero component with full-width background, overlay gradient, centered text block").
 
-**Bolt / v0**: These tools handle React + Tailwind natively. Be explicit about component structure. You can suggest specific component breakdowns (e.g., "Hero component with full-width background image, overlay gradient, and centered text block").
+**Replit Agent**: Prefers step-by-step. Break into phases: "First build the layout skeleton, then styling, then animations."
 
-**Replit Agent**: Prefers step-by-step structure. Break the brief into clear phases: "First build the layout skeleton, then add styling, then add animations."
-
-If the user says "any" or doesn't specify, default to the Lovable format (most detailed).
+Default to Lovable format (most detailed) if the user doesn't specify.
 
 ---
 
@@ -238,18 +216,32 @@ If the user says "any" or doesn't specify, default to the Lovable format (most d
 
 Before outputting the final brief, verify:
 - [ ] Brand/product is unmistakable in the first viewport
-- [ ] There's one strong visual anchor (not a collage)
+- [ ] There's one strong visual anchor per section (image placeholder, code block, or visual technique)
 - [ ] Page can be understood by scanning headlines alone
 - [ ] Each section has exactly one job
 - [ ] Cards are justified (not default)
 - [ ] Motion serves hierarchy, not decoration
-- [ ] No filler copy or placeholder text
+- [ ] No filler copy or placeholder text in the messaging
 - [ ] Color tokens are specific hex values, not "blue" or "dark"
 - [ ] Typography specifies sizes, weights, and tracking
 - [ ] Anti-patterns section is included
-- [ ] **At least 3 visual richness techniques are specified** (glow, gradient, texture, etc.)
-- [ ] **No section relies on images the AI tool can't generate** — code blocks, CSS shapes, or gradient meshes used instead
-- [ ] **The brief would NOT produce a "Tailwind UI starter" look** — there's enough visual personality
+- [ ] Visual strategy addresses what every section looks like — no "just text" sections
+- [ ] The brief reads as opinionated design direction, not a generic template
+
+---
+
+## Litmus Test
+
+After generating the brief, mentally ask:
+- Is the brand unmistakable in the first screen?
+- Is there one strong visual anchor (not a collage)?
+- Can the page be understood by scanning headlines only?
+- Does each section have one job?
+- Are cards actually necessary where used?
+- Does motion improve hierarchy or atmosphere?
+- Would the page feel premium without decorative chrome?
+
+If any answer is "no" — revise the brief before outputting.
 
 ---
 
@@ -273,33 +265,33 @@ The final output should be a single code block the user can paste directly:
 ## Typography
 [specific fonts, sizes, weights]
 
-## Composition Rules
-[rules]
+## Hard Rules
+[composition rules]
 
-## Visual Style
-[3-5 specific visual richness techniques with Tailwind/CSS examples]
+## Visual Strategy
+[image handling + visual richness techniques]
 
 ## Page Structure
-[sections with purposes — each section describes WHAT to render, not what image to show]
+[sections with purposes and visual anchors for each]
 
 ## Motion
-[2-3 specific animations with Framer Motion code hints]
+[2-3 specific animations]
 
 ## Do NOT generate
-[anti-patterns including "no flat template look"]
+[anti-patterns]
 
 ## Responsive
 [mobile-first rules]
 ```
 ~~~
 
-Keep the brief focused — it should be 60-120 lines, not a novel. AI tools work best with dense, opinionated instructions, not exhaustive documentation.
+Keep the brief 60-150 lines. Dense and opinionated beats long and generic.
 
 ---
 
 ## Preset Palettes
 
-When the user describes a vibe but not specific colors, pick from these curated palettes as a starting point and adjust:
+When the user describes a vibe but not specific colors, pick from these curated palettes as a starting point and customize:
 
 **Dark Minimal (Linear/Vercel vibe)**
 Background: #09090B, Surface: #18181B, Text: #FAFAFA, Muted: #71717A, Accent: #6366F1, Border: #27272A
@@ -319,4 +311,4 @@ Background: #FEFCE8, Surface: #FEF9C3, Text: #422006, Muted: #92400E, Accent: #1
 **Cyberpunk / Neon**
 Background: #020617, Surface: #0F172A, Text: #E2E8F0, Muted: #64748B, Accent: #22D3EE, Border: #1E293B
 
-These are starting points — always customize to match the specific brand and product context.
+These are starting points — always customize to match the specific brand and product.
