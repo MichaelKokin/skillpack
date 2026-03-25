@@ -320,27 +320,94 @@ After each section → user reviews → next section.
 
 ---
 
-## Preset Palettes
+## Presets: Palette + Font Pairing
 
-Starting points when user describes a vibe, not specific colors. For Path B/C with existing brand colors — EVOLVE don't replace.
+Each preset is a complete starting point: colors + fonts matched to a **type of business**. Don't pick purely by vibe name — pick by what the product actually IS. A design agency needs to look creative, not like a dev tool.
 
-**Dark Minimal (Linear/Vercel)**
-`#09090B · #18181B · #FAFAFA · #71717A · #6366F1 · #27272A`
+For Path B/C with existing brand colors — EVOLVE, don't replace. Use the closest preset as a base and adapt.
 
-**Warm Dark (Notion/Craft)**
-`#1C1917 · #292524 · #FAFAF9 · #A8A29E · #F59E0B · #44403C`
+All fonts are from **Google Fonts** — include the import URL in the design.md so AI tools can load them:
+`@import url('https://fonts.googleapis.com/css2?family=FontName:wght@400;600;700&display=swap');`
 
-**Light Clean (Stripe)**
-`#FFFFFF · #F4F4F5 · #18181B · #71717A · #2563EB · #E4E4E7`
+---
 
-**Bold & Vibrant (Agency)**
-`#0F172A · #1E293B · #F8FAFC · #94A3B8 · #F43F5E · #334155`
+### 1. Dev Tool / SaaS Product
+*Think: Linear, Vercel, Supabase*
+```
+Colors: #09090B · #18181B · #FAFAFA · #71717A · #6366F1 · #27272A
+Fonts:  Inter (body) + JetBrains Mono (code) — or Manrope (headings) + Inter (body)
+Import: https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@700;800&display=swap
+```
+Why: Dense, functional, dark-by-default. Monospace for code blocks. Calm surfaces.
 
-**Earthy / Organic**
-`#FEFCE8 · #FEF9C3 · #422006 · #92400E · #16A34A · #D9F99D`
+### 2. Creative Agency / Design Studio
+*Think: Pentagram, Sagmeister, high-end portfolios*
+```
+Colors: #FAFAF9 · #F5F5F4 · #1C1917 · #78716C · #A855F7 · #E7E5E4
+         (light base! agencies show work, not dark rectangles)
+Fonts:  Playfair Display (headings) + Lato (body) — editorial, refined
+    OR: DM Serif Display (headings) + DM Sans (body) — modern editorial
+Import: https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;700&display=swap
+```
+Why: LIGHT background so portfolio work pops. Serif headlines add personality. The work is the hero, not the UI.
 
-**Cyberpunk / Neon**
-`#020617 · #0F172A · #E2E8F0 · #64748B · #22D3EE · #1E293B`
+### 3. Startup / Product Landing
+*Think: Stripe, Notion, Raycast*
+```
+Colors: #FFFFFF · #F4F4F5 · #18181B · #71717A · #2563EB · #E4E4E7
+Fonts:  Poppins (headings) + Inter (body) — clean, geometric, trustworthy
+    OR: Space Grotesk (headings) + Inter (body) — more contemporary edge
+Import: https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap
+```
+Why: Light, clean, professional. Blue accent = trust. No friction, easy scanning.
+
+### 4. Bold Brand / Campaign
+*Think: Nike, Spotify Wrapped, product launches*
+```
+Colors: #0F172A · #1E293B · #F8FAFC · #94A3B8 · #F43F5E · #334155
+Fonts:  Bebas Neue (display) + Open Sans (body) — impactful, confident
+    OR: Anton (display) + Rubik (body) — ultra-bold, attention-grabbing
+Import: https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Open+Sans:wght@400;600&display=swap
+```
+Why: High contrast, strong headlines. The typography screams. Dark bg makes accent pop.
+
+### 5. Wellness / Eco / Lifestyle
+*Think: Headspace, Aesop, organic brands*
+```
+Colors: #FEFCE8 · #FEF9C3 · #422006 · #92400E · #16A34A · #D9F99D
+Fonts:  Lora (headings) + Nunito (body) — warm, approachable, human
+    OR: Josefin Sans (headings) + EB Garamond (body) — elegant, natural
+Import: https://fonts.googleapis.com/css2?family=Lora:wght@600;700&family=Nunito:wght@400;600&display=swap
+```
+Why: Warm tones, organic feeling. Serif warmth. Nothing cold or techy.
+
+### 6. Fintech / Enterprise / Corporate
+*Think: Plaid, Ramp, Bloomberg*
+```
+Colors: #FFFFFF · #F8FAFC · #0F172A · #475569 · #0EA5E9 · #E2E8F0
+Fonts:  Libre Franklin (headings) + IBM Plex Serif (body) — serious, trustworthy
+    OR: Barlow (headings) + Source Serif Pro (body) — modern corporate
+Import: https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@500;600;700&family=IBM+Plex+Serif:wght@400;500&display=swap
+```
+Why: Authority. Clean sans headings with serif body = established. Light bg = transparency.
+
+### 7. Web3 / Gaming / Futuristic
+*Think: Solana, Epic Games, cyberpunk aesthetics*
+```
+Colors: #020617 · #0F172A · #E2E8F0 · #64748B · #22D3EE · #1E293B
+Fonts:  Space Grotesk (headings) + Inter (body) — techy, geometric
+    OR: Exo 2 (headings) + Noto Sans (body) — futuristic, sharp
+Import: https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500&display=swap
+```
+Why: Dark, neon accents, technical feel. Geometric fonts reinforce the futuristic vibe.
+
+---
+
+**Choosing the right preset:**
+The MOST important decision is light vs dark background. Rule of thumb:
+- **Light background** → if the product shows visual work (agency, portfolio, e-commerce)
+- **Dark background** → if the product IS the interface (dev tools, SaaS dashboards, gaming)
+- **When in doubt** → light. Dark backgrounds amplify mistakes and look cheap when executed poorly.
 
 ---
 
